@@ -21,7 +21,7 @@ public class TestFragment extends Fragment {
 
         Bundle args = new Bundle();
         args.putString("name", name);
-        TestFragment fragment = new TestFragment();// 这个是例子，我们可以每个fragment建一个类。
+        TestFragment fragment = new TestFragment();
         fragment.setArguments(args);
         return fragment;
     }
