@@ -1,4 +1,4 @@
-package com.shiyan.pokeaccount;
+package android.bignerdranch.a277test;
 
 import org.junit.Test;
 

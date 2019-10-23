@@ -1,9 +1,9 @@
-package com.shiyan.pokeaccount;
+package android.bignerdranch.a277test;
 
 import android.content.Context;
 
-import androidx.test.platform.app.InstrumentationRegistry;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.runner.AndroidJUnit4;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,8 +20,8 @@ public class ExampleInstrumentedTest {
     @Test
     public void useAppContext() {
         // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.shiyan.pokeaccount", appContext.getPackageName());
+        assertEquals("android.bignerdranch.a277test", appContext.getPackageName());
     }
 }
