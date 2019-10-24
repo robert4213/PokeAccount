@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/account_company_label"
+        android:id="@+id/account_company_text"
+        android:textSize="20dp"></TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:id="@+id/company_button"
+        android:layout_below="@+id/account_company_text"
+        android:layout_marginStart="30dp">
+        <Button
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/paypal_button"
+            android:background="@drawable/paypal_logo_style"></Button>
+        <Button
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/alipay_button"
+            android:background="@drawable/alipay_logo_style"></Button>
+        <Button
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/boa_button"
+            android:background="@drawable/bank_of_america_style"></Button>
+        <Button
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/wallet_button"
+            android:background="@drawable/wallet_style"></Button>
+
+    </LinearLayout>
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/account_type_label"
+        android:id="@+id/account_type_text"
+        android:layout_below="@id/company_button"
+        android:textSize="20dp"></TextView>
+
+    <Spinner
+        android:id="@+id/account_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@id/account_type_text"
+        />
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/account_balance_label"
+        android:id="@+id/account_balance_text"
+        android:layout_below="@id/account_type"
+        android:textSize="20dp"></TextView>
+
+    <EditText
+        android:id="@+id/account_balance"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:hint="@string/account_balance_hint"
+        android:inputType="number"
+        android:layout_below="@id/account_balance_text"
+        android:layout_alignParentEnd="true"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="$"
+        android:layout_below="@id/account_balance_text"
+        android:layout_toStartOf="@id/account_balance"
+        android:textSize="36sp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="5dp"
+        ></TextView>
+
+    <Button
+        android:id="@+id/cancel_delete_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/save_button"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="100dp"
+        android:background="@drawable/btn_delete_bg_color"
+        android:text="" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/account_balance"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="100dp"
+        android:background="@drawable/btn_bg_color"
+        android:text="" />
+
+</RelativeLayout>

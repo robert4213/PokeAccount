@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">277Test</string>
     <string name="navigation_home">Home</string>
     <string name="navigation_dashboard">Dash</string>
     <string name="navigation_notifications">Notification</string>
@@ -8,4 +7,24 @@
     <string name="title_activity_maps">Map</string>
     <string name="google_maps_key">AIzaSyDIQu0Y2L7Bj8vFwY1C1m6ezqkP2C6xAVc</string>
     <string name="place_autocomplete">Search_test</string>
+
+    <string name="app_name">PokeAccount</string>
+    <string name="account_company_hint">Enter a title for account.</string>
+    <string name="account_type_hint">Enter a type for account.</string>
+    <string name="account_balance_hint">Enter balance for account</string>
+    <string name="account_company_label">Company</string>
+    <string name="account_type_label">Type</string>
+    <string name="account_balance_label">Balance</string>
+    <string name="new_account">New Account</string>
+    <string name="edit_page">Edit your account</string>
+    <string-array name="account_type">
+        <item>Choose your account type</item>
+        <item>Credit Account</item>
+        <item>Debate Account</item>
+        <item>Online Account</item>
+        <item>Cash</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

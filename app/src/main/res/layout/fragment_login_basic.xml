@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login.Login_Basic_Fragment"
+    android:background="#00000000">
+
+    <com.chaos.view.PinView
+        android:id="@+id/firstPinView"
+        style="@style/PinWidget.PinView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout_bg_rounded_corner"
+        android:cursorVisible="false"
+        android:hint="Hint."
+        android:inputType="numberPassword"
+        android:padding="3dp"
+        android:textColor="#ea9af5"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:hideLineWhenFilled="true"
+        app:itemCount="4"
+        app:itemHeight="60dp"
+        app:itemRadius="4dp"
+        app:itemSpacing="0dp"
+        app:itemWidth="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.242"
+
+        app:lineColor="#ea9af5"
+        app:lineWidth="2dp"
+        app:viewType="rectangle" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#00000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstPinView">
+
+        <TableRow
+            android:background="#00000000"
+            android:padding="10dp">
+
+            <Button
+                android:id="@+id/btn_login_1"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/button1_style" />
+
+            <Button
+                android:id="@+id/btn_login_2"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="30sp"
+                android:layout_marginEnd="30sp"
+                android:background="@drawable/button2_style" />
+
+            <Button
+                android:id="@+id/btn_login_3"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/button3_style" />
+        </TableRow>
+
+        <TableRow
+            android:background="#00000000"
+            android:padding="10dp">
+
+            <Button
+                android:id="@+id/btn_login_4"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/button4_style" />
+
+            <Button
+                android:id="@+id/btn_login_5"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="30sp"
+                android:layout_marginEnd="30sp"
+                android:background="@drawable/button5_style" />
+
+            <Button
+                android:id="@+id/btn_login_6"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/button6_style" />
+        </TableRow>
+
+        <TableRow
+            android:background="#00000000"
+            android:padding="10dp">
+
+            <Button
+                android:id="@+id/btn_login_7"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/button7_style" />
+
+            <Button
+                android:id="@+id/btn_login_8"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="30sp"
+                android:layout_marginEnd="30sp"
+                android:background="@drawable/button8_style" />
+
+            <Button
+                android:id="@+id/btn_login_9"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/button9_style" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="#00000000" />
+
+            <Button
+                android:id="@+id/btn_login_0"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="30sp"
+                android:layout_marginEnd="30sp"
+                android:background="@drawable/button0_style" />
+
+            <Button
+                android:id="@+id/btn_login_x"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/buttonx_style" />
+
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        android:textSize="30sp"
+        android:text="Lala"
+        android:textColor="#a8a7a8"></TextView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

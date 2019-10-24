@@ -5,4 +5,9 @@
     <color name="colorAccent">#D81B60</color>
     <color name="tab_checked">#ED6A2C</color>
     <color name="tab_unchecked">#757575</color>
+    <color name="red">#FF0000</color>
+    <color name="darkRed">#8B0000</color>
+    <color name="grey">#646464</color>
+    <color name="lightGrey">#BCBCBC</color>
+
 </resources>
