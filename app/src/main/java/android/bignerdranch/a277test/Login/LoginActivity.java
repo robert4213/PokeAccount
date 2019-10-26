@@ -9,18 +9,30 @@ import android.os.Bundle;
 
 
 public class LoginActivity extends AppCompatActivity {
+    Fragment fragment;
+    FragmentManager fm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.fragment_container_login);
+        fm = getSupportFragmentManager();
+        fragment = fm.findFragmentById(R.id.fragment_container_login);
 
         if(fragment == null){
-            fragment = new Login_Basic_Fragment();
+            fragment = new EnterFragment();
             fm.beginTransaction().add(R.id.fragment_container_login,fragment).commit();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        fragment = fm.getFragments().get(0);
+        if(fragment != null && !(fragment instanceof EnterFragment)){
+            fm.beginTransaction().replace(R.id.fragment_container_login,new EnterFragment()).commit();
+        }else {
+            super.onBackPressed();
         }
     }
 }

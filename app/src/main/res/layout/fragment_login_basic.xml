@@ -4,11 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login.Login_Basic_Fragment"
+    tools:context=".Login.LoginBasicFragment"
     android:background="#00000000">
 
+    <TextView
+        android:id="@+id/text_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:textColor="@color/quantum_white_100"
+        app:layout_constraintBottom_toTopOf="@+id/PinView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.65"
+        android:text="Text"
+        android:textSize="30sp"></TextView>
+
     <com.chaos.view.PinView
-        android:id="@+id/firstPinView"
+        android:id="@+id/PinView"
         style="@style/PinWidget.PinView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,7 +50,8 @@
 
         app:lineColor="#ea9af5"
         app:lineWidth="2dp"
-        app:viewType="rectangle" />
+        app:viewType="rectangle"
+        android:clickable="false"/>
 
     <TableLayout
         android:id="@+id/tableLayout"
@@ -44,7 +60,7 @@
         android:layout_marginTop="10dp"
         android:background="#00000000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstPinView">
+        app:layout_constraintTop_toBottomOf="@+id/PinView">
 
         <TableRow
             android:background="#00000000"
@@ -161,6 +177,7 @@
     </TableLayout>
 
     <TextView
+        android:id="@+id/text_login_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
