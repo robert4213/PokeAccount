@@ -1,7 +1,9 @@
 package android.bignerdranch.a277test.Login;
 
+import android.bignerdranch.a277test.MainActivity;
 import android.bignerdranch.a277test.R;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -24,7 +27,6 @@ import java.security.UnrecoverableEntryException;
 import java.security.cert.CertificateException;
 
 public class EnterFragment extends LoginBasicFragment {
-    String pass;
     public static final String TAG = "KeyStoreFragment";
 
     @Override
@@ -78,6 +80,10 @@ public class EnterFragment extends LoginBasicFragment {
                     }
                     if (verified) {
                         Log.d(TAG, "Data Signature Verified");
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();
+
                     } else {
                         pinView.setText("");
                         loginText.setText("Wrong Passcode");
@@ -110,6 +116,8 @@ public class EnterFragment extends LoginBasicFragment {
             Log.w(TAG, "Invalid signature.");
             Log.w(TAG, "Exiting verifyData()...");
             return false;
+        }else{
+            Log.w(TAG, "Signature: "+ signatureStr);
         }
 
         try {

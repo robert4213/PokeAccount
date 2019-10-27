@@ -24,7 +24,6 @@ import java.security.UnrecoverableEntryException;
 import java.security.cert.CertificateException;
 
 public class CheckFragment extends LoginBasicFragment {
-    String pass;
     public static final String TAG = "KeyStoreFragment";
 
 
@@ -80,6 +79,8 @@ public class CheckFragment extends LoginBasicFragment {
                         Log.w(TAG, "Invalid Signature", e);
                     }
                     if (verified) {
+                        getFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_container_login, new NewPasscodeFragment()).commit();
                         Log.d(TAG, "Data Signature Verified");
                     } else {
                         pinView.setText("");
