@@ -2,8 +2,11 @@ package android.bignerdranch.a277test;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -19,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPagerAdapter viewPagerAdapter;
     private ViewPager viewPager;
     private MenuItem menuItem;
-    RecyclerView recyclerView;
+    private boolean flag;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(viewPagerAdapter);
         List<Fragment> list = new ArrayList<>();
         list.add(TestFragment.newInstance("HOME"));//在这里添加进list然后就OK了
-        list.add(TestFragment.newInstance("WALLET"));
+        list.add(TransactionFragment.newInstance("WALLET"));
         list.add(TestFragment.newInstance("CARD"));
         list.add(TestFragment.newInstance("Person"));
 
@@ -74,12 +78,10 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_dashboard:
                     viewPager.setCurrentItem(1);
+
                     return true;
                 case R.id.navigation_notifications:
                     viewPager.setCurrentItem(2);
-                    return true;
-                case R.id.navigation_person:
-                    viewPager.setCurrentItem(3);
                     return true;
             }
             return false;
