@@ -1,5 +1,6 @@
 package android.bignerdranch.a277test;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +34,8 @@ public class TransactionFragment extends Fragment {
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.transaction,new Expense_and_IncomeFragment()).commit();
+                Intent intent=new Intent(getActivity(),Expense_Income_Activity.class);
+                startActivity(intent);
             }
         });
 

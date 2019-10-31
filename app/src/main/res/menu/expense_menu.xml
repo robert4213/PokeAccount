@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+
+    >
     <item
-        android:id="@+id/navigation_home2"
-        android:icon="@drawable/iv1_p"
+        android:id="@+id/navigation_expense"
+        android:icon="@drawable/expense"
         android:title="expense" />
     <item
-        android:id="@+id/navigation_dashboard2"
+        android:id="@+id/navigation_income"
         android:icon="@drawable/transaction_off"
         android:title="income"
         />
