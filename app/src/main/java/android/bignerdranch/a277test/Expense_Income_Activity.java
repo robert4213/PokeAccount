@@ -45,6 +45,8 @@ public class Expense_Income_Activity extends AppCompatActivity implements OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense_income);
+        getSupportFragmentManager().beginTransaction().add(R.id.keypad,new KeyPadFragment()).commit();
+
         Init();
     }
 
@@ -57,11 +59,12 @@ public class Expense_Income_Activity extends AppCompatActivity implements OnClic
         // 初始化按钮数组
         ButtonArgs = new Button[] { one, two };
         // 设置指示标签颜色为红色
-        cursor = (ImageView) findViewById(R.id.cursor);
-        cursor.setBackgroundColor(Color.RED);
+       // cursor = (ImageView) findViewById(R.id.cursor);
+       // cursor.setBackgroundColor(Color.RED);
         // 按钮单机事件
         one.setOnClickListener(this);
         two.setOnClickListener(this);
+        onPageSelected(1);
 
 
         // 将fragment放进集合，并初始化适配器
@@ -78,17 +81,19 @@ public class Expense_Income_Activity extends AppCompatActivity implements OnClic
         resetButtonColor();
         // 默认第一页
         one.setTextColor(Color.RED);
+
+
+        ViewPagerScroller scroller = new ViewPagerScroller(this);// 设置动画转场时间
+        scroller.setScrollDuration(1500);
+        scroller.initViewPagerScroll(myvirwpager);
     }
 
     // 设置按钮颜色
     public void resetButtonColor() {
         one.setBackgroundColor(Color.parseColor("#DCDCDC"));
         two.setBackgroundColor(Color.parseColor("#DCDCDC"));
-
         one.setTextColor(Color.BLACK);
         two.setTextColor(Color.BLACK);
-
-
     }
 
     @Override
@@ -96,11 +101,9 @@ public class Expense_Income_Activity extends AppCompatActivity implements OnClic
         switch (v.getId()) {
             case R.id.one:
                 myvirwpager.setCurrentItem(0);
-                cursorAnim(0);
                 break;
             case R.id.two:
                 myvirwpager.setCurrentItem(1);
-                cursorAnim(1);
                 break;
 
         }
@@ -119,34 +122,15 @@ public class Expense_Income_Activity extends AppCompatActivity implements OnClic
     @Override
     public void onPageSelected(int arg0) {
 
-        if (WidrhArgs == null) {
-            WidrhArgs = new int[] { one.getWidth(), two.getWidth(),
-                    };
-        }
 
         // 根据每次选中的按钮，重置颜色
         resetButtonColor();
         // 将滑动到当前的标签下，改动标签颜色
         ButtonArgs[arg0].setTextColor(Color.RED);
-        cursorAnim(arg0);
 
     }
 
     // 指示器的跳转，传入当前所处的页面的下标
-    public void cursorAnim(int curItem) {
-        // 每次调用，就将指示器的横坐标设置为0，即开始的位置
-        cursorX = 0;
-        // 再根据当前的curItem来设置指示器的宽度
-        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) cursor
-                .getLayoutParams();
-        // 减去边距*2，以对齐标题栏文字
-        lp.width = WidrhArgs[curItem] - ButtonArgs[0].getPaddingLeft() * 2;
-        cursor.setLayoutParams(lp);
-        // 循环获取当前页之前的所有页面的宽度
-        for (int i = 0; i < curItem; i++) {
-            cursorX = cursorX + ButtonArgs[i].getWidth();
-        }
-        // 再加上当前页面的左边距，即为指示器当前应处的位置
-        cursor.setX(cursorX + ButtonArgs[curItem].getPaddingLeft());
-    }
+
+
 }
