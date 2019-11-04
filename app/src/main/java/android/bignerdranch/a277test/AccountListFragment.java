@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +21,8 @@ import java.util.List;
 public class AccountListFragment extends Fragment {
     private RecyclerView mAccountRecyclerView;
     private AccountAdapter adapter;
+    private TextView totalText;
+    private Button addAccount;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -33,6 +36,19 @@ public class AccountListFragment extends Fragment {
 
         mAccountRecyclerView = view.findViewById(R.id.account_recycler_view);
         mAccountRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        totalText = view.findViewById(R.id.total_text_account_list);
+        addAccount = view.findViewById(R.id.account_adding_button);
+
+        addAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Account account = new Account();
+                AccountLab.get(getActivity()).addAccount(account);
+                Intent intent = AccountActivity.newIntent(getActivity(),account.getid());
+                startActivity(intent);
+            }
+        });
 
         updateUI();
 
@@ -48,6 +64,16 @@ public class AccountListFragment extends Fragment {
     private void updateUI(){
         AccountLab accountLab = AccountLab.get(getActivity());
         List<Account> accs = accountLab.getAccounts();
+
+        double total = 0.0;
+
+        for(int i = 0; i < accs.size(); i++){
+            total += accs.get(i).getBalance();
+        }
+
+        totalText.setText(String.format("$%.2f", total));
+
+        mAccountRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         if(adapter == null) {
             adapter = new AccountAdapter(accs);
@@ -86,8 +112,6 @@ public class AccountListFragment extends Fragment {
 
         private Account acc;
 
-
-
         public AccountHolder(View itemView){
             super(itemView);
             itemView.setOnClickListener(this);
@@ -99,9 +123,13 @@ public class AccountListFragment extends Fragment {
 
         public void bindAccount(Account account){
             this.acc = account;
-            mCompanyImageView.setImageResource(Integer.parseInt(acc.getCompany()));
-            mTypeTextView.setText(acc.getType());
-            mBalanceTextView.setText(String.format("$%.2f", acc.getBalance()));
+            try {
+                mCompanyImageView.setImageResource(Integer.parseInt(acc.getCompany()));
+                mTypeTextView.setText(acc.getType());
+                mBalanceTextView.setText(String.format("$%.2f", acc.getBalance()));
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
         }
 

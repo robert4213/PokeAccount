@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AccountListFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ImageView
+        android:id="@+id/title_image_account_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/asset_head"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/total_image_account_list"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/total_asset"
+        app:layout_constraintTop_toBottomOf="@+id/title_image_account_list"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/total_text_account_list"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/total_image_account_list"
+        app:layout_constraintEnd_toEndOf="@+id/total_image_account_list"
+        app:layout_constraintTop_toBottomOf="@+id/title_image_account_list"
+        android:text="$0.00"
+        android:textSize="30dp"
+        android:gravity="end|center_vertical"
+ />
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/account_recycler_view"
-        ></androidx.recyclerview.widget.RecyclerView>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_image_account_list"></androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/account_adding_button"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_below="@id/account_recycler_view"
+        android:background="@drawable/add_account_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_recycler_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

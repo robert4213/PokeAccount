@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <co.ceryle.radiorealbutton.RadioRealButtonGroup
+        android:id="@+id/chart_rrbg"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rrbg_animate="true"
+        app:rrbg_animateTexts_enter="overshoot"
+        app:rrbg_animateDrawables_duration="100"
+        app:rrbg_animateSelector="2"
+        app:rrbg_dividerColor="@color/quantum_grey"
+        app:rrbg_dividerSize="1dp"
+        app:rrbg_radius="5dp"
+        app:rrbg_selectorColor="@color/quantum_white_100"
+        app:rrbg_selectorSize="4dp"
+        >
+        <co.ceryle.radiorealbutton.RadioRealButton
+            android:id="@+id/chart_button_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_text="Income"
+            app:rrb_textSize="20sp"
+            app:rrb_ripple="true"
+            app:rrb_textColor="@color/quantum_black_text"/>
+        <co.ceryle.radiorealbutton.RadioRealButton
+            android:id="@+id/chart_button_expense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_text="Expense"
+            app:rrb_textSize="20sp"
+            app:rrb_ripple="true"
+            app:rrb_textColor="@color/quantum_black_text"/>
+        <co.ceryle.radiorealbutton.RadioRealButton
+            android:id="@+id/chart_button_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_text="Balance"
+            app:rrb_textSize="20sp"
+            app:rrb_ripple="true"
+            app:rrb_textColor="@color/quantum_black_text"/>
+    </co.ceryle.radiorealbutton.RadioRealButtonGroup>
+
+    <FrameLayout
+        android:id="@+id/chart_container"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chart_rrbg" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,6 +36,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.google.android.material:material:1.1.0-alpha06'
     implementation 'com.chaos.view:pinview:1.4.3'
-
+    implementation 'com.github.ceryle:RadioRealButton:v2.1.1'
+    implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
 
 }

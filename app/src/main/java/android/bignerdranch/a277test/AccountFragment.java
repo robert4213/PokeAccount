@@ -58,14 +58,6 @@ public class AccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.fragment_account,container,false);
 
-
-//        paypal = v.findViewById(R.id.paypal_button);
-//        paypal.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                acc.setCompany(Integer.toString(R.drawable.paypal_logo));
-//            }
-//        });
         paypal = setButton(v,R.id.paypal_button,R.drawable.paypal_logo);
 
         boa = setButton(v,R.id.boa_button,R.drawable.bank_of_america);
@@ -167,7 +159,7 @@ public class AccountFragment extends Fragment {
 
 
     private void returnPre(){
-        Intent intent = new Intent(getContext(),AccountListActivity.class);
+        Intent intent = new Intent(getContext(),MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         onPause();

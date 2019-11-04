@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.bignerdranch.a277test.Login.CheckFragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         viewPager = (ViewPager) findViewById(R.id.vp);
+        viewPager.setOffscreenPageLimit(2);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 if (menuItem != null) {
                     menuItem.setChecked(false);
                 } else {
-                    bottomNavigationView.getMenu().getItem(0).setChecked(false);
+                    bottomNavigationView.getMenu().getItem(1).setChecked(false);
                 }
                 menuItem = bottomNavigationView.getMenu().getItem(position);
                 menuItem.setChecked(true);
@@ -69,10 +71,9 @@ public class MainActivity extends AppCompatActivity {
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
         List<Fragment> list = new ArrayList<>();
-        list.add(TestFragment.newInstance("HOME"));//在这里添加进list然后就OK了
+        list.add(new AccountListFragment());
         list.add(TransactionFragment.newInstance("WALLET"));
-        list.add(TestFragment.newInstance("CARD"));
-        list.add(TestFragment.newInstance("Person"));
+        list.add(new ChartFragment());
 
         viewPagerAdapter.setList(list);
 
@@ -89,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_dashboard:
                     viewPager.setCurrentItem(1);
-
                     return true;
                 case R.id.navigation_notifications:
                     viewPager.setCurrentItem(2);
