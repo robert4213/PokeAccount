@@ -45,8 +45,6 @@ public class Expense_Income_Activity extends AppCompatActivity implements OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense_income);
-        getSupportFragmentManager().beginTransaction().add(R.id.keypad,new KeyPadFragment()).commit();
-
         Init();
     }
 

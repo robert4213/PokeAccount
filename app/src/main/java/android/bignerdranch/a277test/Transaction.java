@@ -8,6 +8,8 @@ public class Transaction {
     private String TYPE;
     private String VALUE;
 
+
+
     public String getACCOUNTID() {
         return ACCOUNTID;
     }
