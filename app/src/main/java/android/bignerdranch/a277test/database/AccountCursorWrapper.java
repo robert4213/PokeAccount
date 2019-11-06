@@ -15,8 +15,8 @@ public class AccountCursorWrapper extends CursorWrapper {
 
     public Account getAccount(){
         String uuidStr = getString(getColumnIndex(AccountTable.Cols.UUID));
-        String type = getString(getColumnIndex(AccountTable.Cols.Type));
-        String company = getString(getColumnIndex(AccountTable.Cols.COMPANY));
+        String type = getString(getColumnIndex(AccountTable.Cols.CASH));
+        String company = getString(getColumnIndex(AccountTable.Cols.PAYPAL));
         Double balance = getDouble(getColumnIndex(AccountTable.Cols.BALANCE));
 
         Account account = new Account(UUID.fromString(uuidStr));

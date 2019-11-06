@@ -6,8 +6,8 @@ public class AccountDbSchema {
 
         public static final class Cols{
             public static final String UUID = "uuid";
-            public static final String Type = "type";
-            public static final String COMPANY = "company";
+            public static final String CASH = "cash";
+            public static final String PAYPAL = "paypal";
             public static final String BALANCE = "balance";
         }
     }

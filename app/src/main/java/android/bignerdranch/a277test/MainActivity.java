@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.bignerdranch.a277test.Login.CheckFragment;
+import android.bignerdranch.a277test.database.TransactionLab;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private MenuItem menuItem;
     private boolean flag;
-
+    private TransactionLab mlab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
         list.add(new ChartFragment());
 
         viewPagerAdapter.setList(list);
+        mlab=TransactionLab.getMtransaction(getApplicationContext());
+
 
     }
 

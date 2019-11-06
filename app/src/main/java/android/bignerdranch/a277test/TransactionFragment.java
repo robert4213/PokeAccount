@@ -1,6 +1,8 @@
 package android.bignerdranch.a277test;
 
+import android.bignerdranch.a277test.database.TransactionLab;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import androidx.fragment.app.Fragment;
 public class TransactionFragment extends Fragment {
 
     private Button plus;
+
     public static TransactionFragment newInstance(String name) {
         Bundle args = new Bundle();
         args.putString("name", name);
@@ -24,6 +27,7 @@ public class TransactionFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_transaction, container, false);
+
         return view;
     }
 

@@ -87,9 +87,9 @@ public class AccountLab {
     private static ContentValues getContentValue(Account account){
         ContentValues values = new ContentValues();
         values.put(AccountTable.Cols.UUID, account.getid().toString());
-        values.put(AccountTable.Cols.Type,account.getType());
+        values.put(AccountTable.Cols.CASH,account.getType());
         values.put(AccountTable.Cols.BALANCE,account.getBalance());
-        values.put(AccountTable.Cols.COMPANY,account.getCompany());
+        values.put(AccountTable.Cols.PAYPAL,account.getCompany());
         return values;
     }
 

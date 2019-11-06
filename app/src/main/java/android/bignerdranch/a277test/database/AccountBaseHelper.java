@@ -19,8 +19,8 @@ public class AccountBaseHelper extends SQLiteOpenHelper {
         db.execSQL("create table "+ AccountTable.NAME + "("+
                 "_id integer primary key autoincrement,"+
                 AccountTable.Cols.UUID+","+
-                AccountTable.Cols.Type+","+
-                AccountTable.Cols.COMPANY+","+
+                AccountTable.Cols.CASH+","+
+                AccountTable.Cols.PAYPAL+","+
                 AccountTable.Cols.BALANCE+")"
         );
     }
