@@ -13,6 +13,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/imageicon"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginLeft="10dp"
@@ -21,6 +22,7 @@
 
 
         <TextView
+            android:id="@+id/type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -44,24 +46,28 @@
         android:gravity="top">
 
         <ImageButton
+            android:id="@+id/food"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/food"></ImageButton>
 
         <ImageButton
+            android:id="@+id/shopping"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginLeft="50dp"
             android:background="@drawable/shopping"></ImageButton>
 
         <ImageButton
+            android:id="@+id/entertainment"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginLeft="50dp"
             android:background="@drawable/entertainment"></ImageButton>
 
         <ImageButton
+            android:id="@+id/health"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginLeft="50dp"
@@ -108,24 +114,28 @@
         android:gravity="top">
 
         <ImageButton
+            android:id="@+id/household"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/household"></ImageButton>
 
         <ImageButton
+            android:id="@+id/insurance"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginLeft="50dp"
             android:background="@drawable/insurance"></ImageButton>
 
         <ImageButton
+            android:id="@+id/transportation"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginLeft="50dp"
             android:background="@drawable/transportation"></ImageButton>
 
         <ImageButton
+            android:id="@+id/others"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginLeft="50dp"

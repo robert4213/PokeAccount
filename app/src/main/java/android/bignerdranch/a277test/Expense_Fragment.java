@@ -2,15 +2,19 @@ package android.bignerdranch.a277test;
 
 import android.bignerdranch.a277test.database.TransactionDbSchema;
 import android.bignerdranch.a277test.database.TransactionLab;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -26,17 +30,30 @@ public class Expense_Fragment extends Fragment {
     private ViewPagerAdapter viewPagerAdapter;
     private ViewPager viewPager;
     private MenuItem menuItem;
-    TextView textView;
+    TextView textView,type;
     private Button clear, delete, percentage, divide, add, subtract, multiply, equal, minusValue;
     private  Button one, two, three, four, five, six, seven, eight, nine, point, zero ;
+    private ImageButton food,shopping,entertainment,health,household,insurance,transportation,others;
     private Date date;
     private String ans="";
+    private ImageView image;
+
     ArrayList<Integer> a = new ArrayList<Integer>();
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         textView = (TextView)view.findViewById(R.id.textView1);
+        type=(TextView)view.findViewById(R.id.type);
+        food=(ImageButton)view.findViewById(R.id.food);
+        shopping=(ImageButton)view.findViewById(R.id.shopping);
+        entertainment=(ImageButton)view.findViewById(R.id.entertainment);
+        health=(ImageButton)view.findViewById(R.id.health);
+        household=(ImageButton)view.findViewById(R.id.household);
+        insurance=(ImageButton)view.findViewById(R.id.insurance);
+        transportation=(ImageButton)view.findViewById(R.id.transportation);
+        others=(ImageButton)view.findViewById(R.id.others);
+        image=(ImageView)view.findViewById(R.id.imageicon);
 
         //textView.setMovementMethod(new ScrollingMovementMethod());
         //textView.setSelected(true);
@@ -63,6 +80,68 @@ public class Expense_Fragment extends Fragment {
         zero = (Button)view.findViewById(R.id.buttonZero);
 
 
+        food.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type.setText("Food");
+                image.setImageResource(R.drawable.food);
+            }
+        });
+        shopping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type.setText("Shopping");
+                image.setImageResource(R.drawable.shopping);
+            }
+        });
+
+
+        entertainment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type.setText("Entertainment");
+                image.setImageResource(R.drawable.entertainment);
+            }
+        });
+
+        health.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type.setText("Health");
+                image.setImageResource(R.drawable.health);
+            }
+        });
+
+        household.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type.setText("HouseHold");
+                image.setImageResource(R.drawable.household);
+            }
+        });
+        insurance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type.setText("Insutance");
+                image.setImageResource(R.drawable.insurance);
+            }
+        });
+
+        transportation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type.setText("Transportation");
+                image.setImageResource(R.drawable.transportation);
+            }
+        });
+
+        others.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type.setText("Others");
+                image.setImageResource(R.drawable.others);
+            }
+        });
 
         one.setOnClickListener(new View.OnClickListener() {
             @Override
