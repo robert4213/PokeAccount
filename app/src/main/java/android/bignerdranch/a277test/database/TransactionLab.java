@@ -3,6 +3,7 @@ package android.bignerdranch.a277test.database;
 import android.bignerdranch.a277test.Transaction;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.nfc.Tag;
 import android.util.Log;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class TransactionLab {
     private static TransactionLab mtransaction;
-    private List<Transaction> mTransactions;
+
     private Context mContext;
     private SQLiteDatabase mDatabase;
 
@@ -21,7 +22,7 @@ public class TransactionLab {
         mContext=mContext.getApplicationContext();
         mDatabase=new TrasactionBaseHelper(mContext).getWritableDatabase();
         Log.d("MainActivity","DB EXECUTED");
-        mTransactions=new ArrayList<>();
+
 
 
     }
@@ -30,8 +31,20 @@ public class TransactionLab {
         return mDatabase;
     }
 
-    public List<Transaction> getmTransactions() {
-        return mTransactions;
+    public ArrayList<Transaction> getmTransactions() {
+
+        ArrayList<Transaction> transactions=new ArrayList<>();
+        TransactionsCursorWrapper cursor=queryTransactions(null,null);
+        try{
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()){
+                transactions.add(cursor.getTransaction());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+        return transactions;
     }
 
     public static TransactionLab getMtransaction(Context context) {
@@ -52,5 +65,9 @@ public class TransactionLab {
     public void addTransaction(Transaction transaction){
         ContentValues values=getContentValues(transaction);
         mDatabase.insert(TransactionDbSchema.Transactions.NAME,null,values);
+    }
+    private  TransactionsCursorWrapper queryTransactions(String whereClause, String[] whereArgs){
+        Cursor cursor=mDatabase.query(TransactionDbSchema.Transactions.NAME,null,whereClause,whereArgs,null,null,null);
+        return new TransactionsCursorWrapper(cursor);
     }
 }
