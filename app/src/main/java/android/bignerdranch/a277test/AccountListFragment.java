@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -78,13 +79,20 @@ public class AccountListFragment extends Fragment {
 
         mAccountRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-//        if(adapter == null) {
-//            adapter = new AccountAdapter(accs);
-//            mAccountRecyclerView.setAdapter(adapter);
-//        }else{
-//            adapter.setCrimes(accs);
-//            adapter.notifyDataSetChanged();
-//        }
+        if(adapter == null) {
+            adapter = new AccountAdapter(accs);
+            mAccountRecyclerView.setAdapter(adapter);
+        }else{
+            adapter.setCrimes(accs);
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        AccountLab accountLab = AccountLab.get(getActivity());
+        List<Account> accs = accountLab.getAccounts();
 
         adapter = new AccountAdapter(accs);
         mAccountRecyclerView.setAdapter(adapter);

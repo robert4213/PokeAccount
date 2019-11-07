@@ -2,11 +2,13 @@ package android.bignerdranch.a277test;
 
 import android.app.AlertDialog;
 import android.bignerdranch.a277test.database.AccountLab;
+import android.bignerdranch.a277test.database.TransactionLab;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import java.text.DecimalFormat;
+import java.util.Date;
 import java.util.UUID;
 
 public class AccountFragment extends Fragment {
@@ -29,6 +32,7 @@ public class AccountFragment extends Fragment {
     private Button btnDelete,btnSave,paypal,boa,alipay,wallet;
     private Spinner spinner;
     private View v;
+    private double originalValue;
 
     private static final String ACCOUNT_ID = "account_id";
 
@@ -46,7 +50,7 @@ public class AccountFragment extends Fragment {
         super.onCreate(savedInstanceState);
         UUID accountId = (UUID)getArguments().getSerializable(ACCOUNT_ID);
         acc = AccountLab.get(getActivity()).getAccount(accountId);
-
+        originalValue = acc.getBalance();
     }
 
     @Override
@@ -71,7 +75,7 @@ public class AccountFragment extends Fragment {
 
 
         spinner = v.findViewById(R.id.account_type);
-        ArrayAdapter<CharSequence> charAdapter = ArrayAdapter.createFromResource(getActivity(),R.array.account_type,R.layout.spinner_item);
+        final ArrayAdapter<CharSequence> charAdapter = ArrayAdapter.createFromResource(getActivity(),R.array.account_type,R.layout.spinner_item);
         charAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(charAdapter);
@@ -111,12 +115,11 @@ public class AccountFragment extends Fragment {
                 }catch (Exception e){
                     num = acc.getBalance();
                 }
-                acc.setBalance(num);
-
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
+                acc.setBalance(num);
             }
         });
 
@@ -151,6 +154,22 @@ public class AccountFragment extends Fragment {
                 if(!acc.newAccount()) {
                     AccountLab.get(getActivity()).updateAccount(acc);
                     Toast.makeText(getActivity(),"Succeed!",Toast.LENGTH_LONG).show();
+                    double changeValue = acc.getBalance()- originalValue;
+                    //Add Transaction
+                    Transaction transaction=new Transaction();
+                    Date date= new Date();
+                    transaction.setDATE(date.toString());
+                    transaction.setACCOUNTID(acc.getid());
+                    transaction.setTYPE("Account Modified");
+                    if(changeValue < 0){
+                        transaction.setINCOME_EXPENSE("Expense");
+                        transaction.setVALUE(String.valueOf(-1*changeValue));
+                        TransactionLab.getMtransaction(getContext()).addTransaction(transaction);
+                    }else if(changeValue > 0){
+                        transaction.setINCOME_EXPENSE("Income");
+                        transaction.setVALUE(String.valueOf(changeValue));
+                        TransactionLab.getMtransaction(getContext()).addTransaction(transaction);
+                    }
                     returnPre();
                 }else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

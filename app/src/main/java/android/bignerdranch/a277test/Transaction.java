@@ -1,7 +1,9 @@
 package android.bignerdranch.a277test;
 
+import java.util.UUID;
+
 public class Transaction {
-    private String ACCOUNTID;
+    private UUID ACCOUNTID;
     private String INCOME_EXPENSE;
 
     private String DATE;
@@ -10,11 +12,11 @@ public class Transaction {
 
 
 
-    public String getACCOUNTID() {
+    public UUID getACCOUNTID() {
         return ACCOUNTID;
     }
 
-    public void setACCOUNTID(String ACCOUNTID) {
+    public void setACCOUNTID(UUID ACCOUNTID) {
         this.ACCOUNTID = ACCOUNTID;
     }
 

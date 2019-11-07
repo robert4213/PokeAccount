@@ -2,6 +2,7 @@ package android.bignerdranch.a277test;
 
 import android.bignerdranch.a277test.R;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,6 +38,13 @@ public class ChartFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        fm.beginTransaction().replace(R.id.chart_container,new IncomeChartFragment()).commit();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,9 +54,12 @@ public class ChartFragment extends Fragment {
         Fragment fragment = fm.findFragmentById(R.id.chart_container);
 
         if(fragment == null){
+            Log.i("Chart","Fragment is null");
             fm.beginTransaction().add(R.id.chart_container,new IncomeChartFragment()).commit();
-        }
+        }else{
+            Log.i("Chart","Fragment is not null");
 
+        }
 
         rrbg= view.findViewById(R.id.chart_rrbg);
 
@@ -59,15 +70,12 @@ public class ChartFragment extends Fragment {
                 switch (position){
                     case 0:
                         fm.beginTransaction().replace(R.id.chart_container,new IncomeChartFragment()).commit();
-                        Toast.makeText(getContext(),"aaa",Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
                         fm.beginTransaction().replace(R.id.chart_container,new ExpenseChartFragment()).commit();
-                        Toast.makeText(getContext(),"bbb",Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
                         fm.beginTransaction().replace(R.id.chart_container,new BalanceChartFragment()).commit();
-                        Toast.makeText(getContext(),"ccc",Toast.LENGTH_SHORT).show();
                         break;
                 }
             }

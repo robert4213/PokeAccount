@@ -1,16 +1,21 @@
 package android.bignerdranch.a277test;
 
+import android.bignerdranch.a277test.database.AccountLab;
 import android.bignerdranch.a277test.database.TransactionDbSchema;
 import android.bignerdranch.a277test.database.TransactionLab;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,19 +29,23 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 public class Expense_Fragment extends Fragment {
     private BottomNavigationView bottomNavigationView;
     private ViewPagerAdapter viewPagerAdapter;
     private ViewPager viewPager;
     private MenuItem menuItem;
-    TextView textView,type;
+    private TextView textView,type;
     private Button clear, delete, percentage, divide, add, subtract, multiply, equal, minusValue;
     private  Button one, two, three, four, five, six, seven, eight, nine, point, zero ;
     private ImageButton food,shopping,entertainment,health,household,insurance,transportation,others;
     private Date date;
     private String ans="";
     private ImageView image;
+    private Spinner spinner;
+    private UUID accountId;
 
     ArrayList<Integer> a = new ArrayList<Integer>();
 
@@ -436,32 +445,58 @@ public class Expense_Fragment extends Fragment {
                                 res=(res)*(answ)/10000;
                             }
                         }
-                        Transaction transaction=new Transaction();
-                        date= new Date();
-                        transaction.setDATE(date.toString());
-                        transaction.setACCOUNTID("1");
-                        transaction.setINCOME_EXPENSE("Expense");
-                        transaction.setTYPE(String.valueOf(type.getText()));
-                        transaction.setVALUE(String.valueOf(res));
-                        TransactionLab.getMtransaction(getContext()).addTransaction(transaction);
-                        String answer = String.valueOf(res);
 
-                        //
-                        a.clear();
+                        try{
 
+                            Transaction transaction=new Transaction();
+                            date= new Date();
+                            transaction.setDATE(date.toString());
+                            transaction.setACCOUNTID(accountId);
+                            transaction.setINCOME_EXPENSE("Expense");
+                            transaction.setTYPE(String.valueOf(type.getText()));
+                            transaction.setVALUE(String.valueOf(res));
+                            TransactionLab.getMtransaction(getContext()).addTransaction(transaction);
+                            String answer = String.valueOf(res);
+                            a.clear();
+                            textView.setText(answer );
+                            //a.add(answer.length()-1);
+                            ans=answer;
+                            Account account = AccountLab.get(getContext()).getAccount(accountId);
+                            account.setBalance(account.getBalance()- res);
+                            AccountLab.get(getActivity()).updateAccount(account);
+                        }catch (Exception e){
+                            Toast.makeText(getContext(),"No Transaction Created", Toast.LENGTH_LONG).show();
+                        }
 
-                        //int check=0; //first time
-                        //String answ= String.valueOf(a.size());
-
-
-
-                        textView.setText(answer );
-                        //a.add(answer.length()-1);
-                        ans=answer;
                     }
 
 
                 }
+            }
+        });
+
+        final List<Account> accounts = AccountLab.get(getContext()).getAccounts();
+        spinner = view.findViewById(R.id.expense_spinner);
+        ArrayList<String> strs = new ArrayList<>();
+        for(Account account: accounts){
+            strs.add(account.getType()+": $"+account.getBalance());
+        }
+        String[] strA = strs.toArray(new String[strs.size()]);
+        Log.i("Spinner",strA.toString());
+        ArrayAdapter<String> charAdapter = new ArrayAdapter<String>
+                (getActivity(),android.R.layout.simple_spinner_dropdown_item,strA);
+
+        spinner.setAdapter(charAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void  onItemSelected(AdapterView<?> parent, View view, int position, long id){
+                if(position == 0) return;
+                accountId = accounts.get(position).getid();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent){
+                return;
             }
         });
 

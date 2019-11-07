@@ -1,14 +1,19 @@
 package android.bignerdranch.a277test;
 
+import android.bignerdranch.a277test.database.AccountLab;
 import android.bignerdranch.a277test.database.TransactionLab;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +26,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 public class Income_Fragment extends Fragment {
     private BottomNavigationView bottomNavigationView;
@@ -34,6 +41,8 @@ public class Income_Fragment extends Fragment {
     private Date date;
     private String ans="";
     private ImageView image;
+    private Spinner spinner;
+    private UUID accountId;
 
     ArrayList<Integer> a = new ArrayList<Integer>();
 
@@ -418,18 +427,30 @@ public class Income_Fragment extends Fragment {
                                 res=(res)*(answ)/10000;
                             }
                         }
-                        Transaction transaction=new Transaction();
-                        date= new Date();
-                        transaction.setDATE(date.toString());
-                        transaction.setACCOUNTID("1");
-                        transaction.setINCOME_EXPENSE("Income");
-                        transaction.setTYPE(String.valueOf(type.getText()));
-                        transaction.setVALUE(String.valueOf(res));
-                        TransactionLab.getMtransaction(getContext()).addTransaction(transaction);
-                        String answer = String.valueOf(res);
+                        try {
+//                            Account account = AccountLab.get(getContext()).getAccounts().get(0);
 
-                        //
-                        a.clear();
+                            Transaction transaction = new Transaction();
+                            date = new Date();
+                            transaction.setDATE(date.toString());
+                            transaction.setACCOUNTID(accountId);
+                            transaction.setINCOME_EXPENSE("Income");
+                            transaction.setTYPE(String.valueOf(type.getText()));
+                            transaction.setVALUE(String.valueOf(res));
+                            TransactionLab.getMtransaction(getContext()).addTransaction(transaction);
+                            String answer = String.valueOf(res);
+                            a.clear();
+                            textView.setText(answer );
+                            //a.add(answer.length()-1);
+                            ans=answer;
+                            Account account = AccountLab.get(getContext()).getAccount(accountId);
+                            account.setBalance(account.getBalance()+ res);
+                            AccountLab.get(getActivity()).updateAccount(account);
+                        }catch (Exception e){
+                            Toast.makeText(getContext(),"No Account Created", Toast.LENGTH_LONG).show();
+                        }
+                       //
+
 
 
                         //int check=0; //first time
@@ -437,13 +458,36 @@ public class Income_Fragment extends Fragment {
 
 
 
-                        textView.setText(answer );
-                        //a.add(answer.length()-1);
-                        ans=answer;
+
                     }
 
 
                 }
+            }
+        });
+
+        final List<Account> accounts = AccountLab.get(getContext()).getAccounts();
+        spinner = view.findViewById(R.id.income_spinner);
+        ArrayList<String> strs = new ArrayList<>();
+        for(Account account: accounts){
+            strs.add(account.getType()+": $"+account.getBalance());
+        }
+        String[] strA = strs.toArray(new String[strs.size()]);
+        Log.i("Spinner",strA.toString());
+        ArrayAdapter<String> charAdapter = new ArrayAdapter<String>
+                (getActivity(),android.R.layout.simple_spinner_dropdown_item,strA);
+
+        spinner.setAdapter(charAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void  onItemSelected(AdapterView<?> parent, View view, int position, long id){
+                if(position == 0) return;
+                accountId = accounts.get(position).getid();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent){
+                return;
             }
         });
 
