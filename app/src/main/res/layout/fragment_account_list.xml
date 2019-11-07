@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountListFragment">
+    tools:context=".AccountListFragment"
+    android:background="@color/lightGrey">
 
     <ImageView
         android:id="@+id/title_image_account_list"
@@ -37,6 +38,7 @@
  />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:background="#00000000"
         android:id="@+id/account_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -198,7 +198,7 @@
                 <!--                android:layout_centerHorizontal="true"-->
 
                 <!--                android:layout_span="4"-->
-                <!--                android:background="@null"-->
+                <!--                android:account_background="@null"-->
                 <!--                android:gravity="right"-->
                 <!--                android:inputType="number"-->
                 <!--                android:textColor="#000000"-->

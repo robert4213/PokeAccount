@@ -469,6 +469,7 @@ public class Income_Fragment extends Fragment {
         final List<Account> accounts = AccountLab.get(getContext()).getAccounts();
         spinner = view.findViewById(R.id.income_spinner);
         ArrayList<String> strs = new ArrayList<>();
+        strs.add("Please Choose an Account");
         for(Account account: accounts){
             strs.add(account.getType()+": $"+account.getBalance());
         }
@@ -483,7 +484,7 @@ public class Income_Fragment extends Fragment {
             @Override
             public void  onItemSelected(AdapterView<?> parent, View view, int position, long id){
                 if(position == 0) return;
-                accountId = accounts.get(position).getid();
+                accountId = accounts.get(position-1).getid();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent){

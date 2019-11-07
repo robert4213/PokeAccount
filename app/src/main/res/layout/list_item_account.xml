@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="5dp" android:gravity="start">
+    android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="5dp"
+    android:gravity="start"
+    android:background="@color/quantum_white_100">
 
     <TextView
         android:id="@+id/list_item_account_balance"
@@ -10,7 +12,8 @@
         android:padding="4dp"
         android:text="$0.00"
         android:textSize="28sp"
-        android:gravity="center_vertical|end"/>
+        android:gravity="center_vertical|end"
+        android:background="#00000000"/>
 
     <TextView
         android:id="@+id/list_item_account_type"
@@ -20,7 +23,8 @@
         android:layout_toStartOf="@+id/list_item_account_balance"
         android:gravity="center_vertical|left"
         android:text="Type"
-        android:textSize="22dp" />
+        android:textSize="22dp"
+        android:background="#00000000"/>
     <ImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
