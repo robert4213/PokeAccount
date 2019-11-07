@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:text="FOOD"
+            android:text="Food"
 
             android:textSize="30sp"></TextView>
 
@@ -35,7 +35,7 @@
             android:id="@+id/textView1"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:layout_marginLeft="120dp"
+            android:gravity="end"
             android:layout_marginTop="10dp"
             android:textSize="30sp"></TextView>
     </LinearLayout>

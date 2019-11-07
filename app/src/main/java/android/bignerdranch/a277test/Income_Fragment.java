@@ -437,6 +437,7 @@ public class Income_Fragment extends Fragment {
                             //a.add(answer.length()-1);
                             ans=answer;
                             account.setBalance(account.getBalance()+ res);
+                            AccountLab.get(getActivity()).updateAccount(account);
                         }catch (Exception e){
                             Toast.makeText(getContext(),"No Account Created", Toast.LENGTH_LONG).show();
                         }

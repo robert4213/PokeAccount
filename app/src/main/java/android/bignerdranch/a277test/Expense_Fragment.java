@@ -31,7 +31,7 @@ public class Expense_Fragment extends Fragment {
     private ViewPagerAdapter viewPagerAdapter;
     private ViewPager viewPager;
     private MenuItem menuItem;
-    TextView textView,type;
+    private TextView textView,type;
     private Button clear, delete, percentage, divide, add, subtract, multiply, equal, minusValue;
     private  Button one, two, three, four, five, six, seven, eight, nine, point, zero ;
     private ImageButton food,shopping,entertainment,health,household,insurance,transportation,others;
@@ -453,6 +453,8 @@ public class Expense_Fragment extends Fragment {
                             textView.setText(answer );
                             //a.add(answer.length()-1);
                             ans=answer;
+                            account.setBalance(account.getBalance()- res);
+                            AccountLab.get(getActivity()).updateAccount(account);
                         }catch (Exception e){
                             Toast.makeText(getContext(),"No Account Created", Toast.LENGTH_LONG).show();
                         }
