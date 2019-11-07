@@ -65,7 +65,7 @@ public class TransactionFragment extends Fragment {
 
         return view;
     }
-<<<<<<< HEAD
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -105,8 +105,7 @@ public class TransactionFragment extends Fragment {
             }
         });
         mRecyclerView.addItemDecoration(mItemDecoration);
-=======
->>>>>>> 07ffc7ac431df8921978470afd985d5a4a96cd32
+
 
         for (int i = 0; i < transactions.size(); i++) {
             Event event = new Event();
@@ -118,9 +117,6 @@ public class TransactionFragment extends Fragment {
 
         mAdapter = new DotTimeLineAdapter(getContext(), mList);
         mRecyclerView.setAdapter(mAdapter);
-        //Dao
-
-        //拿数据库 Transaction记录
 
         Log.d("TransactionFragment",String.valueOf(transactions.size()));
 
