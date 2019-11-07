@@ -2,6 +2,7 @@ package android.bignerdranch.a277test;
 
 import android.bignerdranch.a277test.database.AccountLab;
 import android.bignerdranch.a277test.database.TransactionLab;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -463,6 +464,8 @@ public class Income_Fragment extends Fragment {
 
 
                 }
+                Intent intent=new Intent(getContext(),MainActivity.class);
+                startActivity(intent);
             }
         });
 

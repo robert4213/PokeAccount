@@ -3,6 +3,7 @@ package android.bignerdranch.a277test;
 import android.bignerdranch.a277test.database.AccountLab;
 import android.bignerdranch.a277test.database.TransactionDbSchema;
 import android.bignerdranch.a277test.database.TransactionLab;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
@@ -472,6 +473,9 @@ public class Expense_Fragment extends Fragment {
 
 
                 }
+
+                Intent intent=new Intent(getContext(),MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -511,5 +515,6 @@ public class Expense_Fragment extends Fragment {
 
         return view;
     }
+
 
 }

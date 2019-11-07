@@ -35,22 +35,7 @@ public class TransactionFragment extends Fragment {
     DotTimeLineAdapter mAdapter;
     DotItemDecoration mItemDecoration;
 
-//    long[] times = {
-//            1497229200,
-//            1497240000,
-//            1497243600,
-//            1497247200,
-//            1497249000,
-//            1497252600
-//    };
-//    String[] events = new String[]{
-//            "去小北门拿快递",
-//            "跟同事一起聚餐",
-//            "写文档",
-//            "和产品开会",
-//            "整理开会内容",
-//            "提交代码到git上"
-//    };
+
 
     public static TransactionFragment newInstance(String name) {
         Bundle args = new Bundle();
