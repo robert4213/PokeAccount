@@ -441,7 +441,7 @@ public class Expense_Fragment extends Fragment {
                         transaction.setDATE(date.toString());
                         transaction.setACCOUNTID("1");
                         transaction.setINCOME_EXPENSE("Expense");
-                        transaction.setTYPE("food");
+                        transaction.setTYPE(String.valueOf(type.getText()));
                         transaction.setVALUE(String.valueOf(res));
                         TransactionLab.getMtransaction(getContext()).addTransaction(transaction);
                         String answer = String.valueOf(res);
