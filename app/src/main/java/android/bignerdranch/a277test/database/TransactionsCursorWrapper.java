@@ -4,6 +4,8 @@ import android.bignerdranch.a277test.Transaction;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
+import java.util.UUID;
+
 public class TransactionsCursorWrapper extends CursorWrapper {
     public TransactionsCursorWrapper(Cursor cursor){
         super(cursor);
@@ -17,7 +19,7 @@ public class TransactionsCursorWrapper extends CursorWrapper {
 
         Transaction transaction=new Transaction();
 
-        transaction.setACCOUNTID(ACCOUNTID);
+        transaction.setACCOUNTID(UUID.fromString(ACCOUNTID));
         transaction.setINCOME_EXPENSE(INCOME_EXPENSE);
         transaction.setVALUE(Value);
         transaction.setTYPE(Type);

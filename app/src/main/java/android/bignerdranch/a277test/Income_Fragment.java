@@ -1,5 +1,6 @@
 package android.bignerdranch.a277test;
 
+import android.bignerdranch.a277test.database.AccountLab;
 import android.bignerdranch.a277test.database.TransactionLab;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 public class Income_Fragment extends Fragment {
     private BottomNavigationView bottomNavigationView;
@@ -418,18 +420,28 @@ public class Income_Fragment extends Fragment {
                                 res=(res)*(answ)/10000;
                             }
                         }
-                        Transaction transaction=new Transaction();
-                        date= new Date();
-                        transaction.setDATE(date.toString());
-                        transaction.setACCOUNTID("1");
-                        transaction.setINCOME_EXPENSE("Income");
-                        transaction.setTYPE(String.valueOf(type.getText()));
-                        transaction.setVALUE(String.valueOf(res));
-                        TransactionLab.getMtransaction(getContext()).addTransaction(transaction);
-                        String answer = String.valueOf(res);
+                        try {
+                            Account account = AccountLab.get(getContext()).getAccounts().get(0);
 
-                        //
-                        a.clear();
+                            Transaction transaction = new Transaction();
+                            date = new Date();
+                            transaction.setDATE(date.toString());
+                            transaction.setACCOUNTID(account.getid());
+                            transaction.setINCOME_EXPENSE("Income");
+                            transaction.setTYPE(String.valueOf(type.getText()));
+                            transaction.setVALUE(String.valueOf(res));
+                            TransactionLab.getMtransaction(getContext()).addTransaction(transaction);
+                            String answer = String.valueOf(res);
+                            a.clear();
+                            textView.setText(answer );
+                            //a.add(answer.length()-1);
+                            ans=answer;
+                            account.setBalance(account.getBalance()+ res);
+                        }catch (Exception e){
+                            Toast.makeText(getContext(),"No Account Created", Toast.LENGTH_LONG).show();
+                        }
+                       //
+
 
 
                         //int check=0; //first time
@@ -437,9 +449,7 @@ public class Income_Fragment extends Fragment {
 
 
 
-                        textView.setText(answer );
-                        //a.add(answer.length()-1);
-                        ans=answer;
+
                     }
 
 

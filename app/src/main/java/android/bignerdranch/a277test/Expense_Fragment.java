@@ -1,5 +1,6 @@
 package android.bignerdranch.a277test;
 
+import android.bignerdranch.a277test.database.AccountLab;
 import android.bignerdranch.a277test.database.TransactionDbSchema;
 import android.bignerdranch.a277test.database.TransactionLab;
 import android.content.res.Resources;
@@ -436,28 +437,26 @@ public class Expense_Fragment extends Fragment {
                                 res=(res)*(answ)/10000;
                             }
                         }
-                        Transaction transaction=new Transaction();
-                        date= new Date();
-                        transaction.setDATE(date.toString());
-                        transaction.setACCOUNTID("1");
-                        transaction.setINCOME_EXPENSE("Expense");
-                        transaction.setTYPE(String.valueOf(type.getText()));
-                        transaction.setVALUE(String.valueOf(res));
-                        TransactionLab.getMtransaction(getContext()).addTransaction(transaction);
-                        String answer = String.valueOf(res);
 
-                        //
-                        a.clear();
+                        try{
+                            Account account = AccountLab.get(getContext()).getAccounts().get(0);
+                            Transaction transaction=new Transaction();
+                            date= new Date();
+                            transaction.setDATE(date.toString());
+                            transaction.setACCOUNTID(account.getid());
+                            transaction.setINCOME_EXPENSE("Expense");
+                            transaction.setTYPE(String.valueOf(type.getText()));
+                            transaction.setVALUE(String.valueOf(res));
+                            TransactionLab.getMtransaction(getContext()).addTransaction(transaction);
+                            String answer = String.valueOf(res);
+                            a.clear();
+                            textView.setText(answer );
+                            //a.add(answer.length()-1);
+                            ans=answer;
+                        }catch (Exception e){
+                            Toast.makeText(getContext(),"No Account Created", Toast.LENGTH_LONG).show();
+                        }
 
-
-                        //int check=0; //first time
-                        //String answ= String.valueOf(a.size());
-
-
-
-                        textView.setText(answer );
-                        //a.add(answer.length()-1);
-                        ans=answer;
                     }
 
 
