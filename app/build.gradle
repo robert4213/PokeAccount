@@ -38,5 +38,5 @@ dependencies {
     implementation 'com.chaos.view:pinview:1.4.3'
     implementation 'com.github.ceryle:RadioRealButton:v2.1.1'
     implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
-
+    implementation 'com.vivian.widgets:TimeLineItemDecoration:1.5'
 }

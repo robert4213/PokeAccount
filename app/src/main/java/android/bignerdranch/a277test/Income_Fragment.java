@@ -422,7 +422,7 @@ public class Income_Fragment extends Fragment {
                         date= new Date();
                         transaction.setDATE(date.toString());
                         transaction.setACCOUNTID("1");
-                        transaction.setINCOME_EXPENSE("Expense");
+                        transaction.setINCOME_EXPENSE("Income");
                         transaction.setTYPE(String.valueOf(type.getText()));
                         transaction.setVALUE(String.valueOf(res));
                         TransactionLab.getMtransaction(getContext()).addTransaction(transaction);
