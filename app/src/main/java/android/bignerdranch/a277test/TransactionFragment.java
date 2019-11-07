@@ -14,18 +14,43 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.vivian.timelineitemdecoration.itemdecoration.DotItemDecoration;
 import com.vivian.timelineitemdecoration.itemdecoration.SpanIndexListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TransactionFragment extends Fragment {
 
     private Button plus;
     private TransactionLab lab;
     private ArrayList<Transaction> transactions;
+
+    RecyclerView mRecyclerView;
+    List<Event> mList = new ArrayList<>();
+    DotTimeLineAdapter mAdapter;
+    DotItemDecoration mItemDecoration;
+
+//    long[] times = {
+//            1497229200,
+//            1497240000,
+//            1497243600,
+//            1497247200,
+//            1497249000,
+//            1497252600
+//    };
+//    String[] events = new String[]{
+//            "去小北门拿快递",
+//            "跟同事一起聚餐",
+//            "写文档",
+//            "和产品开会",
+//            "整理开会内容",
+//            "提交代码到git上"
+//    };
 
     public static TransactionFragment newInstance(String name) {
         Bundle args = new Bundle();
@@ -37,34 +62,7 @@ public class TransactionFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_transaction, container, false);
-        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        DotItemDecoration mItemDecoration = new DotItemDecoration
-                .Builder(getContext())
-                .setOrientation(DotItemDecoration.VERTICAL)//如果LayoutManager设置了横向，那么这里也要设置成横向
-                .setItemStyle(DotItemDecoration.STYLE_DRAW)//选择dot使用图片资源或者用canvas画
-                .setTopDistance(20)//单位dp
-                .setItemInterVal(10)//单位dp
-                .setItemPaddingLeft(10)//如果不设置，默认和item间距一样
-                .setItemPaddingRight(10)//如果不设置，默认和item间距一样
-                .setDotColor(Color.WHITE)
-                .setDotRadius(2)//单位dp
-                .setDotPaddingTop(0)
-                .setDotInItemOrientationCenter(false)//设置dot居中
-                .setLineColor(Color.RED)//设置线的颜色
-                .setLineWidth(1)//单位dp
-                .setEndText("END")//设置结束的文字
-                .setTextColor(Color.WHITE)
-                .setTextSize(10)//单位sp
-                .setDotPaddingText(2)//单位dp.设置最后一个点和文字之间的距离
-                .setBottomDistance(40)//设置底部距离，可以延长底部线的长度
-                .create();
 
-        mItemDecoration.setSpanIndexListener(new SpanIndexListener() {
-            @Override
-            public void onSpanIndexChange(View view, int spanIndex) {
-                view.setBackgroundResource(spanIndex == 0 ? R.drawable.pop_left : R.drawable.pop_right);
-            }
-        });
         return view;
     }
 
@@ -72,12 +70,58 @@ public class TransactionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         plus=view.findViewById(R.id.plus);
+
+
+        lab=TransactionLab.getMtransaction(getContext());
+        transactions=lab.getmTransactions();
+        mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view);
+        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        mItemDecoration = new DotItemDecoration
+                .Builder(getContext())
+                .setOrientation(DotItemDecoration.VERTICAL)//if you want a horizontal item decoration,remember to set horizontal orientation to your LayoutManager
+                .setItemStyle(DotItemDecoration.STYLE_DRAW)
+                .setTopDistance(20)//dp
+                .setItemInterVal(10)//dp
+                .setItemPaddingLeft(20)//default value equals to item interval value
+                .setItemPaddingRight(20)//default value equals to item interval value
+                .setDotColor(Color.WHITE)
+                .setDotRadius(2)//dp
+                .setDotPaddingTop(0)
+                .setDotInItemOrientationCenter(false)//set true if you want the dot align center
+                .setLineColor(Color.RED)
+                .setLineWidth(1)//dp
+                .setEndText("END")
+                .setTextColor(Color.WHITE)
+                .setTextSize(10)//sp
+                .setDotPaddingText(2)//dp.The distance between the last dot and the end text
+                .setBottomDistance(40)//you can add a distance to make bottom line longer
+                .create();
+        mItemDecoration.setSpanIndexListener(new SpanIndexListener() {
+            @Override
+            public void onSpanIndexChange(View view, int spanIndex) {
+                Log.i("Info","view:"+view+"  span:"+spanIndex);
+                //   view.setBackgroundResource(spanIndex == 0 ? R.drawable.pop_left : R.drawable.pop_right);
+            }
+        });
+        mRecyclerView.addItemDecoration(mItemDecoration);
+
+        for (int i = 0; i < transactions.size(); i++) {
+            Event event = new Event();
+
+            event.setTime((transactions.get(i).getDATE()) );
+            event.setEvent(transactions.get(i).getTYPE()+"  "+transactions.get(i).getVALUE());
+            mList.add(event);
+        }
+
+        mAdapter = new DotTimeLineAdapter(getContext(), mList);
+        mRecyclerView.setAdapter(mAdapter);
         //Dao
 
         //拿数据库 Transaction记录
-      lab=TransactionLab.getMtransaction(getContext());
-      transactions=lab.getmTransactions();
+
         Log.d("TransactionFragment",String.valueOf(transactions.size()));
+
+
 
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
