@@ -7,9 +7,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 public abstract class SingleChartFragment extends Fragment {
+    protected View view;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -19,7 +21,7 @@ public abstract class SingleChartFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_single_chart,container,false);
+        view = inflater.inflate(R.layout.fragment_single_chart,container,false);
 
         setChart(view);
 
@@ -27,4 +29,8 @@ public abstract class SingleChartFragment extends Fragment {
     }
 
     protected abstract void setChart(View view);
+
+    protected void setNullBackground(){
+        view.findViewById(R.id.chart_null_background).setBackground(ContextCompat.getDrawable(getContext(), R.drawable.no_contents_background));
+    }
 }

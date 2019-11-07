@@ -1,5 +1,6 @@
 package android.bignerdranch.a277test;
 
+import android.bignerdranch.a277test.database.TransactionLab;
 import android.view.View;
 
 import com.anychart.AnyChart;
@@ -11,6 +12,8 @@ import com.anychart.enums.Align;
 import com.anychart.enums.LegendLayout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class ExpenseChartFragment extends SingleChartFragment {
@@ -25,10 +28,26 @@ public class ExpenseChartFragment extends SingleChartFragment {
 
     private Pie createIncomePie(){
         Pie pie = AnyChart.pie();
-
         List<DataEntry> data = new ArrayList<>();
-        data.add(new ValueDataEntry("aa", 671664));
-        data.add(new ValueDataEntry("bb", 789622));
+        HashMap<String,String> hashMap = new HashMap<>();
+        ArrayList<Transaction> transactions = TransactionLab.getMtransaction(getContext()).getmTransactions();
+        for( Transaction transaction : transactions){
+            if(transaction.getINCOME_EXPENSE().equalsIgnoreCase("Expense")) {
+                if (hashMap.get(transaction.getTYPE()) == null){
+                    hashMap.put(transaction.getTYPE(),transaction.getVALUE());
+                }else{
+                    hashMap.put(transaction.getTYPE(),Double.toString(Double.parseDouble(transaction.getVALUE())+Double.parseDouble(hashMap.get(transaction.getTYPE()))));
+                }
+            }
+        }
+        Iterator iterator = hashMap.keySet().iterator();
+        if(hashMap.isEmpty()){
+            setNullBackground();
+        }
+        while (iterator.hasNext()){
+            String key = (String)iterator.next();
+            data.add(new ValueDataEntry(key, Double.parseDouble(hashMap.get(key))));
+        }
 
         pie.data(data);
 

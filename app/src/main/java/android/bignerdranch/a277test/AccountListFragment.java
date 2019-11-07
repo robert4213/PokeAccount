@@ -1,7 +1,9 @@
 package android.bignerdranch.a277test;
 
+import android.bignerdranch.a277test.database.AccountLab;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -59,6 +61,7 @@ public class AccountListFragment extends Fragment {
     public void onResume(){
         super.onResume();
         updateUI();
+        Log.i("AccList","omResume");
     }
 
     private void updateUI(){
@@ -75,14 +78,16 @@ public class AccountListFragment extends Fragment {
 
         mAccountRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        if(adapter == null) {
-            adapter = new AccountAdapter(accs);
-            mAccountRecyclerView.setAdapter(adapter);
-        }else{
-            adapter.setCrimes(accs);
-            adapter.notifyDataSetChanged();
-        }
+//        if(adapter == null) {
+//            adapter = new AccountAdapter(accs);
+//            mAccountRecyclerView.setAdapter(adapter);
+//        }else{
+//            adapter.setCrimes(accs);
+//            adapter.notifyDataSetChanged();
+//        }
 
+        adapter = new AccountAdapter(accs);
+        mAccountRecyclerView.setAdapter(adapter);
     }
 
     @Override

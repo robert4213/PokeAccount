@@ -1,7 +1,6 @@
-package android.bignerdranch.a277test;
+package android.bignerdranch.a277test.database;
 
-import android.bignerdranch.a277test.database.AccountBaseHelper;
-import android.bignerdranch.a277test.database.AccountCursorWrapper;
+import android.bignerdranch.a277test.Account;
 import android.bignerdranch.a277test.database.AccountDbSchema.AccountTable;
 import android.content.ContentValues;
 import android.content.Context;
