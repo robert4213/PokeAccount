@@ -61,7 +61,7 @@ public class AccountListFragment extends Fragment {
     public void onResume(){
         super.onResume();
         updateUI();
-        Log.i("AccList","omResume");
+        Log.i("AccList","onResume");
     }
 
     private void updateUI(){

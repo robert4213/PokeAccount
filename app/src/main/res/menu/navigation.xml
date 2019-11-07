@@ -2,20 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/iv1_p"
-        android:title="首页" />
+        android:icon="@drawable/ic_account_balance"
+        android:title="Account" />
 
     <item
 
         android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/transaction_off"
-        android:title="吃"
+        android:icon="@drawable/ic_add_transaction"
+        android:title="Transaction"
 
         />
     <item
         android:id="@+id/navigation_notifications"
-        android:icon="@drawable/iv3_p"
-        android:title="交通" />
+        android:icon="@drawable/ic_show_chart"
+        android:title="Chart" />
 
 
 </menu>

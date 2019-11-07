@@ -66,6 +66,7 @@ public class ChartFragment extends Fragment {
                         Toast.makeText(getContext(),"bbb",Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
+                        fm.beginTransaction().replace(R.id.chart_container,new BalanceChartFragment()).commit();
                         Toast.makeText(getContext(),"ccc",Toast.LENGTH_SHORT).show();
                         break;
                 }
