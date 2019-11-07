@@ -55,7 +55,7 @@ public class TransactionLab {
     private static ContentValues getContentValues(Transaction transaction){
         ContentValues values=new ContentValues();
         values.put(TransactionDbSchema.Transactions.Cols.ACCOUNTID,transaction.getACCOUNTID());
-        values.put(TransactionDbSchema.Transactions.Cols.CARD_NUMBER,transaction.getCARD_NUMBER());
+
         values.put(TransactionDbSchema.Transactions.Cols.INCOME_EXPENSE,transaction.getINCOME_EXPENSE());
         values.put(TransactionDbSchema.Transactions.Cols.Type,transaction.getTYPE());
         values.put(TransactionDbSchema.Transactions.Cols.Date,transaction.getDATE());

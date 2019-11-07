@@ -440,7 +440,6 @@ public class Expense_Fragment extends Fragment {
                         date= new Date();
                         transaction.setDATE(date.toString());
                         transaction.setACCOUNTID("1");
-                        transaction.setCARD_NUMBER("01");
                         transaction.setINCOME_EXPENSE("Expense");
                         transaction.setTYPE("food");
                         transaction.setVALUE(String.valueOf(res));

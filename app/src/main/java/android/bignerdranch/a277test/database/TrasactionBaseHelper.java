@@ -19,15 +19,13 @@ public class TrasactionBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         Log.d("MainActivity","table created!!!!!!!!!!!!!!!!!!");
         db.execSQL("create table "+ NAME+"(" +
+                "_id integer primary key autoincrement,"+
                 TransactionDbSchema.Transactions.Cols.ACCOUNTID+","+
                 TransactionDbSchema.Transactions.Cols.INCOME_EXPENSE+","+
                         TransactionDbSchema.Transactions.Cols.Type+","+
                         TransactionDbSchema.Transactions.Cols.Value+","+
-                        TransactionDbSchema.Transactions.Cols.Date+","+
-                        TransactionDbSchema.Transactions.Cols.CARD_NUMBER+","+
-                "PRIMARY KEY "+ "("+ TransactionDbSchema.Transactions.Cols.ACCOUNTID+ ","+ TransactionDbSchema.Transactions.Cols.CARD_NUMBER+
-                ","+ TransactionDbSchema.Transactions.Cols.Date+","+ TransactionDbSchema.Transactions.Cols.INCOME_EXPENSE+
-                ")"+")"
+                        TransactionDbSchema.Transactions.Cols.Date+
+                       ")"
 
         );
 

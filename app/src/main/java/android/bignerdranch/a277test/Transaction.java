@@ -3,7 +3,7 @@ package android.bignerdranch.a277test;
 public class Transaction {
     private String ACCOUNTID;
     private String INCOME_EXPENSE;
-    private String CARD_NUMBER;
+
     private String DATE;
     private String TYPE;
     private String VALUE;
@@ -24,14 +24,6 @@ public class Transaction {
 
     public void setINCOME_EXPENSE(String INCOME_EXPENSE) {
         this.INCOME_EXPENSE = INCOME_EXPENSE;
-    }
-
-    public String getCARD_NUMBER() {
-        return CARD_NUMBER;
-    }
-
-    public void setCARD_NUMBER(String CARD_NUMBER) {
-        this.CARD_NUMBER = CARD_NUMBER;
     }
 
     public String getDATE() {
