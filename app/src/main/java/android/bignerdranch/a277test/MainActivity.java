@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         list.add(new ChartFragment());
 
         viewPagerAdapter.setList(list);
+        viewPager.setCurrentItem(1);
         mlab=TransactionLab.getMtransaction(getApplicationContext());
 
 
@@ -102,4 +103,9 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+//        onStop();
+    }
 }
