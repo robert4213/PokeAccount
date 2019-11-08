@@ -136,14 +136,16 @@ public class AccountFragment extends Fragment {
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Transaction transaction=new Transaction();
-                        Date date= new Date();
-                        transaction.setDATE(date.toString());
-                        transaction.setACCOUNTID(acc.getid());
-                        transaction.setTYPE("Account Modified");
-                        transaction.setINCOME_EXPENSE("Expense");
-                        transaction.setVALUE(String.valueOf(acc.getBalance()));
-                        TransactionLab.getMtransaction(getContext()).addTransaction(transaction);
+                        if(btnDelete.getText().equals("Delete") && acc.getBalance()!= 0.0) {
+                            Transaction transaction = new Transaction();
+                            Date date = new Date();
+                            transaction.setDATE(date.toString());
+                            transaction.setACCOUNTID(acc.getid());
+                            transaction.setTYPE("Account Modified");
+                            transaction.setINCOME_EXPENSE("Expense");
+                            transaction.setVALUE(String.valueOf(acc.getBalance()));
+                            TransactionLab.getMtransaction(getContext()).addTransaction(transaction);
+                        }
                         AccountLab.get(getActivity()).deleteAccount(acc);
                         returnPre();
                     }
