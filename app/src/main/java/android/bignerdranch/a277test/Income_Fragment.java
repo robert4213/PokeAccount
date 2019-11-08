@@ -450,21 +450,13 @@ public class Income_Fragment extends Fragment {
                         }catch (Exception e){
                             Toast.makeText(getContext(),"No Transaction Created", Toast.LENGTH_LONG).show();
                         }
-                       //
-
-
-
-                        //int check=0; //first time
-                        //String answ= String.valueOf(a.size());
-
-
-
 
                     }
 
 
                 }
                 Intent intent=new Intent(getContext(),MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });

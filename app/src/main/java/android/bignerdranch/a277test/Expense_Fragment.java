@@ -475,6 +475,7 @@ public class Expense_Fragment extends Fragment {
                 }
 
                 Intent intent=new Intent(getContext(),MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });

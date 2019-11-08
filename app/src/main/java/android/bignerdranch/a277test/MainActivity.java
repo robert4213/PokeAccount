@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private MenuItem menuItem;
     private boolean flag;
     private TransactionLab mlab;
+    private static int page =1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+                page = position;
             }
 
             @Override
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         list.add(new ChartFragment());
 
         viewPagerAdapter.setList(list);
-        viewPager.setCurrentItem(1);
+        viewPager.setCurrentItem(page);
         mlab=TransactionLab.getMtransaction(getApplicationContext());
 
 
@@ -91,12 +92,15 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     viewPager.setCurrentItem(0);
+                    page = 0;
                     return true;
                 case R.id.navigation_dashboard:
                     viewPager.setCurrentItem(1);
+                    page = 1;
                     return true;
                 case R.id.navigation_notifications:
                     viewPager.setCurrentItem(2);
+                    page = 2;
                     return true;
             }
             return false;
