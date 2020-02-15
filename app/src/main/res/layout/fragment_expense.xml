@@ -206,7 +206,7 @@
             android:shrinkColumns="*"
             android:stretchColumns="*"
             android:weightSum="120"
-            tools:context="android.bignerdranch.a277test.Expense_Income_Activity">
+            tools:context="android.cmpe277.pokeaccount.Expense_Income_Activity">
 
             <TableRow
                 android:layout_width="fill_parent"
